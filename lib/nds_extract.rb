@@ -82,7 +82,14 @@ def movies_with_directors_set(source)
   #
   # Array of Arrays containing all of a director's movies. Each movie will need
   # to have a :director_name key added to it.
-  puts source
+  new_arr = []
+  source.each{|director| director_names.push(director[:name])}
+  director_names.each{|name| new_arr.push(source)}
+  source.each{|director|
+    director[:movies].each{|movie| movie[:director_name] = director[:name]}
+    new_arr.push(director[:movies])
+  }
+  new_arr
 end
 
 # ----------------    End of Your Code Region --------------------
